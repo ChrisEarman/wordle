@@ -1,22 +1,40 @@
 .key {
     border: 2px solid #777;
-    margin-right: 5px;
-    margin-top: 5px;
+    margin: 3px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 6px;
     font-weight: bold;
 
-    font-size: 24px;
-    /*line-height: 68px;*/
-    height: 68px;
+    font-size: 16px;
+    /*line-height: 45px;*/
+    height: 45px;
+}
+
+/* When text overflows the button, centering doesnt work b/c text-align only applies to text which does not fill
+   the given area. This class modifies a span to be used inside the button to allow for centering of overflow.
+   This could be seen in larger characters (W & M) overflowing in their small buttons looking slightly off center
+   as well as with ENT and DEL in their respective buttons. */
+.text-overflow-center {
+    margin-left: -100%;
+    margin-right: -100%;
+    text-align: center;
+}
+
+.key-row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.key-row {
+    justify-content: center;
 }
 
 .key-type-0 {
-    width: 40px;
+    width: 26px;
 }
 
 .key-type-1 {
-    width: 60px;
+    width: 39px;
 }
 
 .key-background-0 {

@@ -1,8 +1,8 @@
 import React from "react";
 import * as Utils from "./wordleUtils.ts";
-import './keyboard.css';
 import {LetterState} from "./wordleUtils.ts";
-
+import './keyboard.css';
+import './flex-common.css';
 
 class Key extends React.Component {
     render() {
@@ -10,7 +10,7 @@ class Key extends React.Component {
           <button className={`key key-type-${this.props.keyType} key-background-${this.props.keyState}`}
                   onClick={() => this.props.handleClick(this.props.value)}
           >
-              {this.props.value}
+              <span className={`text-overflow-center`}>{this.props.value}</span>
           </button>
         );
     }
@@ -88,7 +88,7 @@ export class KeyBoard extends React.Component {
             keys.push(this.renderKey(i, j));
         }
         return (
-            <div>{keys}</div>
+            <div className={`key-row flex-container nowrap`}>{keys}</div>
         );
     }
 

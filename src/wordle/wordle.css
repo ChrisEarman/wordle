@@ -33,15 +33,17 @@
 .square {
     border: 2px solid #777;
     float: left;
-    font-size: 66px;
+    font-size: 44px;
     font-weight: bold;
-    line-height: 68px;
-    height: 75px;
-    margin-right: 10px;
-    margin-top: 10px;
+    margin: 5px;
     padding: 0;
     text-align: center;
-    width: 75px;
+    /*line-height: 68px;*/
+    height: 50px;
+    /*!*height: 25vh;*!*/
+    width: 50px;
+    /*width: 25vh;*/
+    display: inline-block;
 }
 
 .square:focus {
@@ -62,21 +64,8 @@
 }
 
 .game-board {
-    margin-bottom: 10px;
-    margin-top: 20px;
-}
-
-.game-info {
-    margin-left: 20px;
-}
-
-.dot {
-    height: 11px;
-    width: 10px;
-    background-color: #333;
-    border-radius: 90%;
-    display: inline-block;
-    margin-bottom: 14px;
+    margin-bottom: 5px;
+    margin-top: 10px;
 }
 
 

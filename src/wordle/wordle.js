@@ -1,21 +1,21 @@
 import React from "react";
 import * as Utils from "./wordleUtils.ts";
 import {KeyBoard} from "./keyboard";
-import {Dictionary} from "./dictionary.ts";
 import './wordle.css';
+import './flex-common.css';
 
 const queryParams = new URLSearchParams(window.location.search);
 const SEED = queryParams.get('seed');
-const DICTIONARY = new Dictionary();
-const WORD = SEED === null ? DICTIONARY.get_word_random() : DICTIONARY.get_word_seeded(SEED);
+const FORCE = queryParams.get("word");
+const WORD = FORCE === null ? (SEED === null ? Utils.DICTIONARY.get_word_random() : Utils.DICTIONARY.get_word_seeded(SEED)) : FORCE;
 console.log(WORD);
 
 class Square extends React.Component {
     render() {
         return (
-            <button className={`square square-background-${this.props.letterState}`}>
+            <div className={`square square-background-${this.props.letterState}`}>
                 {this.props.value}
-            </button>
+            </div>
         );
     }
 }
@@ -40,7 +40,7 @@ class Board extends React.Component {
             squares.push(this.renderSquare(i, j));
         }
         return (
-            <div>{squares}</div>
+            <div className={`board-row flex-container nowrap`}>{squares}</div>
         );
     }
 
@@ -83,7 +83,7 @@ export default class Game extends React.Component {
         const squares = this.state.boardRows.slice();
         const i = this.state.attemptNum;
         const j = this.state.charNum;
-        console.log(i, j, letter)
+        // console.log(i, j, letter)
         squares[i][j].value = letter;
         this.setState({
             boardRows: squares,
@@ -114,12 +114,11 @@ export default class Game extends React.Component {
     }
 
     submitWord() {
-        console.log("charNum: ", this.state.charNum)
         if (this.state.charNum === Utils.WordLength) {
             const squares = this.state.boardRows.slice();
             const word = squares[this.state.attemptNum];
 
-            if (DICTIONARY.contains(word.map(e => e.value).join(""))) {
+            if (Utils.DICTIONARY.contains(word.map(e => e.value).join(""))) {
                 // Update newly submitted row
                 let wordState = Utils.validateWord(word, WORD);
                 for (let i = 0; i < wordState.length; i++) {
@@ -128,6 +127,9 @@ export default class Game extends React.Component {
 
                 // Update keyboard
                 let keyStates = Utils.keyStates(squares);
+
+                // Get remaining valid guesses
+                let validRemaining = Utils.remainingWords(squares);
 
                 this.setState({
                     attemptNum: this.state.attemptNum + 1,
