@@ -147,6 +147,9 @@ export default class Game extends React.Component {
     render() {
         return (
             <div className="Game">
+                <div className={`game-header`}>
+                    <span>WORDLE+</span>
+                </div>
                 <div className="game-board mx-auto">
                     <Board
                         rows={this.state.boardRows}
