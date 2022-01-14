@@ -1,6 +1,7 @@
 import React from "react";
 import * as Utils from "./wordleUtils.ts";
 import {KeyBoard} from "./keyboard";
+import {Menu} from "./menu";
 import './wordle.css';
 import './flex-common.css';
 
@@ -168,6 +169,12 @@ export default class Game extends React.Component {
                 <div className="game-info">
                     <div>{/* status */}</div>
                     <ol>{/* TODO */}</ol>
+                </div>
+                <div className="game-menu">
+                    <Menu
+                        word={WORD}
+                        definition={Utils.DICTIONARY.define(WORD)}
+                    />
                 </div>
             </div>
         );

@@ -1,0 +1,22 @@
+.hideable {
+    border: 2px solid #222;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: bold;
+    color: black;
+    width: 300px;
+}
+
+.hideable-true {
+    background: #555;
+}
+
+.hideable-false {
+    background: #777;
+}
+
+.menu {
+
+}
