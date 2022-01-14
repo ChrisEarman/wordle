@@ -135,5 +135,6 @@ export function remainingWords(attempts: Rows): string[] {
         }
     }
     console.log(words);
+    console.log(words.map(word => DICTIONARY.define(word)))
     return words;
 }

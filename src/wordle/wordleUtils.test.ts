@@ -129,7 +129,7 @@ test("remainingWords globe, shady, mucky, tripy", () => {
     tripy[2].letterState = LetterState.wrongSpot;
 
     const remaining = remainingWords([globe, shady, mucky, tripy])
-    let expected = ["FINNY", "FIZZY", "NIFFY", "NINNY"];
+    let expected = ["FINNY", "FIZZY", "JIFFY", "NIFFY", "NINNY"];
     expect(remaining).toEqual(expected);
 })
 
@@ -173,6 +173,6 @@ test("remainingWords help", () => {
     muses[4].letterState = LetterState.rightSpot;
 
     const remaining = remainingWords([plays, rites, bones, dukes, muses])
-    let expected = ["FUZES"];
+    let expected = ["CUZES", "FUZES", "JUVES"];
     expect(remaining).toEqual(expected);
 })
