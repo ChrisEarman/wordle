@@ -1,4 +1,4 @@
-.hideable {
+.menu-button {
     border: 2px solid #222;
     margin: 5px;
     padding: 10px;
@@ -19,4 +19,72 @@
 
 .menu {
 
+}
+
+.menu-bar {
+    border-bottom: 4px solid #444;
+    align-items: baseline;
+}
+
+.menu-bar:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.game-header {
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #666;
+}
+
+.menu-icon {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+}
+
+
+.modal_content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    padding-top: 0px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*text-align: center;*/
+    border: solid 4px #333;
+    border-radius: 10px;
+    background: #222222;
+}
+
+.close {
+    color: #666;
+    font-size: 40px;
+    font-weight: bold;
+    top: 50px;
+    align-self: flex-end;
+    /*float: right;*/
+}
+
+.close:hover {
+    color: #999;
+    cursor: pointer;
 }

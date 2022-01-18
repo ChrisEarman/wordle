@@ -8,6 +8,10 @@
     font-size: 16px;
     /*line-height: 45px;*/
     height: 45px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* When text overflows the button, centering doesnt work b/c text-align only applies to text which does not fill

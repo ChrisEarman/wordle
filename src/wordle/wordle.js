@@ -1,12 +1,14 @@
+// import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import React from "react";
 import * as Utils from "./wordleUtils.ts";
 import {KeyBoard} from "./keyboard";
-import {Menu} from "./menu";
+import {Menu, MenuBar} from "./menu";
 import './wordle.css';
 import './flex-common.css';
 
 const queryParams = new URLSearchParams(window.location.search);
-const SEED = queryParams.get('seed');
+const SEED = queryParams.has('seed') ? queryParams.get('seed') : (Math.random() + 1).toString(36).substring(2);
 const FORCE = queryParams.get("word");
 const WORD = FORCE === null ? (SEED === null ? Utils.DICTIONARY.get_word_random() : Utils.DICTIONARY.get_word_seeded(SEED)) : FORCE;
 console.log(WORD);
@@ -148,9 +150,11 @@ export default class Game extends React.Component {
     render() {
         return (
             <div className="Game">
-                <div className={`game-header`}>
-                    <span>WORDLE+</span>
-                </div>
+                <MenuBar
+                    word={WORD}
+                    definition={Utils.DICTIONARY.define(WORD)}
+                    seed={SEED}
+                />
                 <div className="game-board mx-auto">
                     <Board
                         rows={this.state.boardRows}
@@ -170,12 +174,13 @@ export default class Game extends React.Component {
                     <div>{/* status */}</div>
                     <ol>{/* TODO */}</ol>
                 </div>
-                <div className="game-menu">
-                    <Menu
-                        word={WORD}
-                        definition={Utils.DICTIONARY.define(WORD)}
-                    />
-                </div>
+                {/*<div className="game-menu">*/}
+                {/*    <Menu*/}
+                {/*        word={WORD}*/}
+                {/*        definition={Utils.DICTIONARY.define(WORD)}*/}
+                {/*        seed={SEED}*/}
+                {/*    />*/}
+                {/*</div>*/}
             </div>
         );
     }

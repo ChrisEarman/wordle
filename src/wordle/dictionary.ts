@@ -16,8 +16,6 @@ export class Dictionary {
             }
         }
         this.wordSet = new Set<string>(this.wordList)
-        console.log(this.wordMap.size)
-
     }
 
     define(word: string): string {

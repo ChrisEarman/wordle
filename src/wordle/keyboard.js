@@ -7,11 +7,11 @@ import './flex-common.css';
 class Key extends React.Component {
     render() {
         return (
-          <button className={`key key-type-${this.props.keyType} key-background-${this.props.keyState}`}
+          <div className={`key key-type-${this.props.keyType} key-background-${this.props.keyState}`}
                   onClick={() => this.props.handleClick(this.props.value)}
           >
               <span className={`text-overflow-center`}>{this.props.value}</span>
-          </button>
+          </div>
         );
     }
 }

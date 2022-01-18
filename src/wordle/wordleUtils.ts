@@ -10,6 +10,7 @@ export const KeyRows = [
     "!ZXCVBNM?"
 ];
 export const DICTIONARY = new Dictionary();
+export const SEED_URL_PREFIX = "https://wordle.earman.io/?seed=";
 
 
 /** Util Enums, Types, & Interfaces **/
