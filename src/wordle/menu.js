@@ -5,6 +5,7 @@ import './flex-common.css';
 
 export const WORD = "Word";
 export const DEFINITION = "Definition";
+export const COPY = "Copy Sharable Link to Clipboard";
 
 class MenuButton extends React.Component {
     render() {
@@ -30,25 +31,31 @@ export class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            wordHidden: true,
-            definitionHidden: true,
+            hiddenMap: new Map([
+                [WORD, true],
+                [DEFINITION, true],
+                [COPY, true]
+            ]),
         }
     }
 
     /** Handler Methods **/
     handleClick(title) {
-        let toggle;
-        if (title === WORD) {
-            toggle = !this.state.wordHidden;
-            this.setState({
-                wordHidden: toggle,
-            })
-        } else {
-            toggle = !this.state.definitionHidden;
-            this.setState({
-                definitionHidden: toggle,
-            })
-        }
+        let hmap = this.state.hiddenMap;
+        hmap.set(title, !hmap.get(title));
+        this.setState({
+            hiddenMap: hmap,
+        })
+
+    }
+
+    handleClickDelayedReset(title) {
+        this.handleClick(title);
+        setTimeout(function(){
+            let hmap = this.state.hiddenMap;
+            hmap.set(title,  true);
+            this.setState({hiddenMap: hmap});
+        }.bind(this, title),700);
     }
 
     /** Render Methods **/
@@ -56,21 +63,25 @@ export class Menu extends React.Component {
         return (
           <div className={`menu`}>
               <MenuButton
-                  hidden={this.state.wordHidden}
+                  hidden={this.state.hiddenMap.get(WORD)}
                   title={WORD}
                   content={this.props.word}
                   onClick={() => this.handleClick(WORD)}
               />
               <MenuButton
-                  hidden={this.state.definitionHidden}
+                  hidden={this.state.hiddenMap.get(DEFINITION)}
                   title={DEFINITION}
                   content={this.props.definition}
                   onClick={() => this.handleClick(DEFINITION)}
               />
               <MenuButton
-                  hidden={true}
-                  title={"Copy Sharable Link to Clipboard"}
-                  onClick={() => navigator.clipboard.writeText(SEED_URL_PREFIX + this.props.seed)}
+                  hidden={this.state.hiddenMap.get(COPY)}
+                  title={COPY}
+                  content={"Copied!"}
+                  onClick={() => {
+                      navigator.clipboard.writeText(SEED_URL_PREFIX + this.props.seed);
+                      this.handleClickDelayedReset(COPY)
+                  }}
               />
           </div>
         );

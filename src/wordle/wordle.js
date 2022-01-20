@@ -3,7 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import React from "react";
 import * as Utils from "./wordleUtils.ts";
 import {KeyBoard} from "./keyboard";
-import {Menu, MenuBar} from "./menu";
+import {MenuBar} from "./menu";
 import './wordle.css';
 import './flex-common.css';
 
@@ -70,6 +70,15 @@ export default class Game extends React.Component {
         }
         this.initBoard();
     }
+
+    componentDidMount() {
+        document.addEventListener("keydown", (event) => {this.handleKeyPress(event)});
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", (event) => {this.handleKeyPress(event)});
+    }
+
 
     /** Helper Functions **/
     initBoard() {
@@ -143,6 +152,18 @@ export default class Game extends React.Component {
             } else {
                 console.log("Not a Valid Word", word)
             }
+        }
+    }
+
+    handleKeyPress(event) {
+        let key = event.key.toUpperCase()
+        console.log(key);
+        if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(key)) {
+            this.typeLetter(key);
+        } else if ("ENTER" === key) {
+            this.submitWord();
+        } else if ("BACKSPACE" === key) {
+            this.deleteLetter();
         }
     }
 

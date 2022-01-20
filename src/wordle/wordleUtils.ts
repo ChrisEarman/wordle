@@ -139,3 +139,8 @@ export function remainingWords(attempts: Rows): string[] {
     console.log(words.map(word => DICTIONARY.define(word)))
     return words;
 }
+
+export function nextSeed(seed: string): string {
+
+    return
+}
